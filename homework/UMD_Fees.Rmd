@@ -11,7 +11,7 @@ Janitor performs important data cleaning operations
 
 ```{r}
 library(tidyverse)
-#install.packages('janitor')
+install.packages('janitor')
 library(janitor)
 ```
 
@@ -87,7 +87,7 @@ HINT HINT HINT
 
 Write a few sentences about what you found in the data. What's the story here?
 
-
+I think the story here is how athletic fees have stayed the same from 2021 to 2024. I think that if you did a deep dive into athletic spending and news, you could find new developments that would make having the same amount of athletic fees from 2021 to 2024 not make sense. I think a story calling out the athletic department on where the money is actually coming from would be very interesting.
 
 
 
