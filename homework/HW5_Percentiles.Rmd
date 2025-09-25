@@ -67,3 +67,15 @@ Baltimore, the most populated city in Maryland with about 589,000 citizens, expe
 ### Task 9: Save Your Work and Put it on GitHub
 
 Save this notebook, then commit it to your local repository. Push the changes to your GitHub repository and submit the URL for this file in ELMS.
+
+### Task 10:
+```{r}
+md_cities_percentiles <- md_cities_change |> mutate(percentile = ntile(violent_rate_2020, 100))
+```
+11 cities are above/within the 90th percentile.
+
+```{r}
+md_cities_rates |>
+summarize(IQR_violent_rate_2020 = IQR(violent_rate_2020))
+```
+I don't think that these results would change my story idea from the previous assignment. I still think Baltimore is such a prevalent city within the data as it has such high crime rates and therefore it is important to report on the decrease in these crime rates.
