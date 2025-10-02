@@ -1,0 +1,82 @@
+---
+title: "HW7_MandMs"
+date: 10/1/2025
+name: Bella DeCrescenzo
+---
+
+
+In this assignment, you'll be picking up where you left off with the M&Ms activity. You'll load the data and perform some basic statistical analysis. Follow the steps below to complete the assignment.
+
+### Task 1: Load the tidyverse
+
+```{r}
+library(tidyverse)
+```
+
+
+### Task 2: Load an M&Ms dataset from https://raw.githubusercontent.com/dwillis/jour405/refs/heads/main/data/mandms.csv
+```{r}
+candy <- read_csv("https://raw.githubusercontent.com/dwillis/jour405/refs/heads/main/data/mandms.csv")
+```
+
+
+### Task 3: Sample 5 rows of data from the dataset, and then sample 10 rows, saving each to separate dataframes called sample5 and sample10. Be sure to use set.seed(1234) before you start.
+```{r}
+set.seed(1234)
+sample5 <-candy |> 
+  sample_n(5)
+sample10 <- candy |>
+  sample_n(10)
+```
+
+
+### Task 4: Calculate the mean, median and standard deviation of red M&Ms from each of the samples.
+```{r}
+sample5 |> summarize(mean = mean(red), median = median(red), sd = sd(red))
+sample10 |> summarize(mean = mean(red), median = median(red), sd = sd(red))
+```
+
+
+### Task 5: Calculate the mean, median and standard deviation of red M&Ms from the population
+
+```{r}
+candy |> summarize(mean = mean(red), median = median(red), sd = sd(red))
+
+```
+
+### Task 6: Make three histograms: one each for sample5, sample10 and the original dataset. Include a headline. Use a consistent binwidth.
+
+```{r}
+sample5 |> 
+  ggplot() + 
+  geom_histogram(aes(x = red), binwidth = 4) +
+  labs(title = "Distribution of Red M&Ms", x = "Number of Red M&Ms", y = "Number of people with M&Ms")
+sample10 |> 
+  ggplot() + 
+  geom_histogram(aes(x = red), binwidth = 4) +
+  labs(title = "Distribution of Red M&Ms", x = "Number of Red M&Ms", y = "Number of people with M&Ms")
+candy |> 
+  ggplot() + 
+  geom_histogram(aes(x = red), binwidth = 4) +
+  labs(title = "Distribution of Red M&Ms", x = "Number of Red M&Ms", y = "Number of people with M&Ms")
+```
+
+
+### Task 7: Answer questions
+
+
+Compare the three sets of means, standard deviations and histograms. Which are more helpful to you in understanding the accuracy of the samples?
+Overall, the histogram for the sample of 10 is closest to the population histogram while the sample of 5's histogram is not very accurate or close to the population's histogram. The mean for the population is 72.98 while the mean for the sample of 5 is 73.8 and the mean for the sample of 10 is 74.7. Overall, both of these sample means are very close to the mean of the population. The sd for the population is 16.45 while the sd for the sample of 5 is 14.9 and the sd for the sample of 10 is 10.35. 
+
+Comparing the means of the two samples to the mean of the population is most helpful in understanding the accuracy of the samples. Also, comparing the histogram of the population to the histograms of the samples is helpful in understanding how accurate the samples are and how closely the findings of the samples measure up to the total population findings.
+
+What does this exercise tell you about the relationship between sample size and estimate accuracy?
+This exercise tells me that the larger the sample size, the more accurate the estimates and findings are.
+
+How does random sampling introduce variation into statistical estimates?
+Random sampling introduces variation into statistical estimates because the samples that are chosen vary every time. Therefore, even if you take the same number for each sample, the specific data chosen varies and the statistical estimates are going to vary between random samples.
+
+If you repeated this process, would the samples always be identical? Why or why not?
+No, the samples would not always be identical because even if you choose the same number of people or data points to include, the actual data or people chosen are going to differ, which will cause the findings from each sample to differ.
+
+When finished, save your work, switch to GitHub Desktop, then add, commit and push your changes to GitHub and submit the URL of the notebook in ELMS.
