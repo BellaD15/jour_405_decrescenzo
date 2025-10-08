@@ -161,7 +161,7 @@ homtemp |>
 ```{r}
 homtemp |> 
   ggplot() +
-  geom_point(aes(x=temperature, y=murders)) +
+  geom_point(aes(x=temperature, y=murders, size=5)) +
   geom_smooth(aes(x=temperature, y=murders), method="lm") +
   geom_text(aes(x=temperature, y=murders, label = month)) +
   expand_limits(x = 0, y = 0)
