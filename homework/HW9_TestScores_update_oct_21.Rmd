@@ -112,8 +112,8 @@ How third-grade reading scores have changed over time
 This is where we formally test the superintendent's claim that reading scores have improved. Fill in the REPLACE_ME values as needed, beginning with your hypotheses.
 
 **Hypotheses:**
-Null: The new reading program REPLACE_ME
-Alternative: The new reading program REPLACE_ME
+Null: The new reading program did not improve student's reading scores.
+Alternative: The new reading program did improve student's reading scores.
 
 ```{r}
 # Set the significance level for your test
