@@ -71,7 +71,7 @@ Let's add some stats to that process - mean and standard deviation - and calcula
 theft_summary <- car_thefts |> 
   summarize(
     mean_thefts = mean(total),
-    sd_thefts = sd(REPLACE_ME),
+    sd_thefts = sd(total),
     months = n(),
     se_thefts = sd_thefts / sqrt(months),
     margin_error = qt(0.975, df = months - 1) * se_thefts,  # Using t-distribution for small sample
@@ -116,11 +116,14 @@ ggplot(aes(x = month, y = total)) +
 
 ### Task 6: Describe the confidence interval.
 
-- What does the 95% confidence interval show here? **WRITE ANSWER HERE:**
+- What does the 95% confidence interval show here? 
+The 95% confidence interval shows that the monthly car thefts have not consistently declined as I thought originally. The 95% confidence interval shows that if this sampling process was repeated, the number of car thefts per month would not show as steep of an incline as the data would fall within the red shaded area. 
 
-- What figure(s) accurately reflects the number of car thefts in a typical month? **WRITE ANSWER HERE:**
+- What figure(s) accurately reflects the number of car thefts in a typical month? 
+The mean of 460.4 accurately reflects the number of car thefts in a typical month.
 
-- Propose a headline about the trend in car thefts that is focused on the present and future, but informed by the data you see above. **WRITE ANSWER HERE:**
+- Propose a headline about the trend in car thefts that is focused on the present and future, but informed by the data you see above. 
+There have not been any significant changes in the monthly number of car thefts in Prince George's County over the years
 
 
 
@@ -151,11 +154,11 @@ t_test_periods
 period_summary <- car_thefts |> 
   group_by(period) |> 
   summarize(
-    mean_thefts = mean(REPLACE_ME),
+    mean_thefts = mean(total),
     sd_thefts = sd(total),
     months = n(),
     se_thefts = sd_thefts / sqrt(months),
-    margin_error = qt(0.975, df = REPLACE_ME - 1) * se_thefts, # look at how we calculated this above
+    margin_error = qt(0.975, df = months - 1) * se_thefts, # look at how we calculated this above
     ci_lower = mean_thefts - margin_error,
     ci_upper = mean_thefts + margin_error
   )
@@ -179,9 +182,11 @@ ggplot(aes(x = period, y = mean_thefts, fill = period)) +
 
 ### Task 8: Reflection
 
-Given the above chart, is the difference between the two periods statistically significant? Can we reject the null hypothesis? **WRITE ANSWER HERE:**
+Given the above chart, is the difference between the two periods statistically significant? Can we reject the null hypothesis? 
+Since the p-value is 0.179, we cannot reject the null hypothesis. Therefore, the difference between the two periods is not statistically significant. 
 
-How would you revise your headline from Task 6, if at all? What would you tell your editor, and what would you expect her to ask you? **WRITE ANSWER HERE:**
+How would you revise your headline from Task 6, if at all? What would you tell your editor, and what would you expect her to ask you? 
+I would not revise my headline from Task 6. I would expect my editor to ask me whether the data warrants a story and if the findings are statistically significant. I would tell my editor that there really isn't a story in this data as there have been no significant changes that would warrant a story.
 
 
 
