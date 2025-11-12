@@ -1,8 +1,7 @@
 ---
-title: "Final Project Pt. 1"
+title: "final_project"
 output: html_document
-date: "2025-11-11"
-name: Bella DeCrescenzo
+date: "2025-11-12"
 ---
 
 ```{r setup, include=FALSE}
@@ -11,16 +10,23 @@ library(tidyverse)
 ```
 
 
-```{r cars}
+```{r}
 tuition <- read_csv("https://raw.githubusercontent.com/wellsdata/Jour405_student_repo_fall_2025/refs/heads/main/project/college_scorecard_2021_2024.csv")
 ```
+***This dataset consists of the in-state and out-of-state tuitions in Maryland and Virginia colleges and universities from 2021 to 2023. The data includes the name of the institution, the tuition details throughout the years, and then the insititution's enrollment count per year. The data came from the U.S. Department of Education. (https://collegescorecard.ed.gov/)
 
-## Including Plots
+The most important columns for my analysis will be the in-state and out-of-state columns for each year, as I will probably be looking at how these figures have changed over time. 
 
-You can also embed plots, for example:
+Something that I might want that is not included in the data is how inflation in the United States has changed throughout the years included in the dataset.
 
-```{r pressure, echo=FALSE}
-plot(pressure)
+```{r}
+tuitions2021_analysis <- tuition |>
+  summarize(
+    mean_2021_intuition = mean(`2021_22_tuitionfee_in`, na.rm=TRUE), 
+    median_2021_intuition = median(`2021_22_tuitionfee_in`, na.rm=TRUE),
+    mean_2021_intuition = mean(`2021_22_tuitionfee_in`, na.rm=TRUE), 
+    max_2021_intuition = max(`2021_22_tuitionfee_in`, na.rm=TRUE),
+    mean_2021_intuition = mean(`2021_22_tuitionfee_in`, na.rm=TRUE), 
+    min_2021_intuition = min(`2021_22_tuitionfee_in`, na.rm=TRUE))
 ```
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
