@@ -27,7 +27,8 @@ tuitions2021_analysis_instate <- tuition |>
     mean_2021_intuition = mean(`2021_22_tuitionfee_in`, na.rm=TRUE), 
     max_2021_intuition = max(`2021_22_tuitionfee_in`, na.rm=TRUE),
     mean_2021_intuition = mean(`2021_22_tuitionfee_in`, na.rm=TRUE), 
-    min_2021_intuition = min(`2021_22_tuitionfee_in`, na.rm=TRUE))
+    min_2021_intuition = min(`2021_22_tuitionfee_in`, na.rm=TRUE),
+    sd_2021_intuition = sd(`2021_22_tuitionfee_in`, na.rm=TRUE))
 ```
 
 ```{r}
@@ -38,12 +39,58 @@ tuitions2021_analysis_outofstate <- tuition |>
     mean_2021_outtuition = mean(`2021_22_tuitionfee_out`, na.rm=TRUE), 
     max_2021_outtuition = max(`2021_22_tuitionfee_out`, na.rm=TRUE),
     mean_2021_outtuition = mean(`2021_22_tuitionfee_out`, na.rm=TRUE), 
-    min_2021_outtuition = min(`2021_22_tuitionfee_out`, na.rm=TRUE))
+    min_2021_outtuition = min(`2021_22_tuitionfee_out`, na.rm=TRUE),
+    sd_2021_outtuition = sd(`2021_22_tuitionfee_out`, na.rm=TRUE))
+```
+
+```{r}
+tuitions2022_analysis_instate <- tuition |>
+  summarize(
+    mean_2022_intuition = mean(`2022_23_tuitionfee_in`, na.rm=TRUE), 
+    median_2022_intuition = median(`2022_23_tuitionfee_in`, na.rm=TRUE),
+    mean_2022_intuition = mean(`2022_23_tuitionfee_in`, na.rm=TRUE), 
+    max_2022_intuition = max(`2022_23_tuitionfee_in`, na.rm=TRUE),
+    mean_2022_intuition = mean(`2022_23_tuitionfee_in`, na.rm=TRUE), 
+    min_2022_intuition = min(`2022_23_tuitionfee_in`, na.rm=TRUE),
+    sd_2022_intuition = sd(`2022_23_tuitionfee_in`, na.rm=TRUE))
+```
+
+```{r}
+tuitions2022_analysis_outstate <- tuition |>
+  summarize(
+    mean_2022_outtuition = mean(`2022_23_tuitionfee_out`, na.rm=TRUE), 
+    median_2022_outtuition = median(`2022_23_tuitionfee_out`, na.rm=TRUE),
+    mean_2022_outtuition = mean(`2022_23_tuitionfee_out`, na.rm=TRUE), 
+    max_2022_outtuition = max(`2022_23_tuitionfee_out`, na.rm=TRUE),
+    mean_2022_outtuition = mean(`2022_23_tuitionfee_out`, na.rm=TRUE), 
+    min_2022_outtuition = min(`2022_23_tuitionfee_out`, na.rm=TRUE),
+    sd_2022_outtuition = sd(`2022_23_tuitionfee_out`, na.rm=TRUE))
+```
+
+```{r}
+tuitions2023_analysis_instate <- tuition |>
+  summarize(
+    mean_2023_intuition = mean(`2023_24_tuitionfee_in`, na.rm=TRUE), 
+    median_2023_intuition = median(`2023_24_tuitionfee_in`, na.rm=TRUE),
+    mean_2023_intuition = mean(`2023_24_tuitionfee_in`, na.rm=TRUE), 
+    max_2023_intuition = max(`2023_24_tuitionfee_in`, na.rm=TRUE),
+    mean_2023_intuition = mean(`2023_24_tuitionfee_in`, na.rm=TRUE), 
+    min_2023_intuition = min(`2023_24_tuitionfee_in`, na.rm=TRUE),
+    sd_2023_intuition = sd(`2023_24_tuitionfee_in`, na.rm=TRUE))
+```
+
+```{r}
+tuitions2023_analysis_outstate <- tuition |>
+  summarize(
+    mean_2023_outtuition = mean(`2023_24_tuitionfee_out`, na.rm=TRUE), 
+    median_2023_outtuition = median(`2023_24_tuitionfee_out`, na.rm=TRUE),
+    mean_2023_outtuition = mean(`2023_24_tuitionfee_out`, na.rm=TRUE), 
+    max_2023_outtuition = max(`2023_24_tuitionfee_out`, na.rm=TRUE),
+    mean_2023_outtuition = mean(`2023_24_tuitionfee_out`, na.rm=TRUE), 
+    min_2023_outtuition = min(`2023_24_tuitionfee_out`, na.rm=TRUE),
+    sd_2023_outtuition = sd(`2023_24_tuitionfee_out`, na.rm=TRUE))
 ```
 
 Possible hypothesis:
-Null: Tuition for Maryland and Virginia colleges and universities have not changed significantly from 2021-2023 for in-state and out-of-state students.
-Alternative: Tuition for Maryland and Virginia colleges and universities have changed significantly from 2021-2023 for in-state and out-of-state students.
-
-Null: Out-of-state students throughout Maryland and Virginia colleges and universities have not experienced a more significant change in tuition than in-state students from 2021-2023.
-Alternative: Out-of-state students throughout Maryland and Virginia colleges and universities have experienced a more significant change in tuition than in-state students from 2021-2023.
+Null: Tuition for Maryland and Virginia colleges and universities have not increased more for out-of-state students from 2021-2023.
+Alternative: Tuition for Maryland and Virginia colleges and universities have increased more for out-of-state students from 2021-2023.
