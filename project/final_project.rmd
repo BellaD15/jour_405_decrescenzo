@@ -20,77 +20,87 @@ The most important columns for my analysis will be the in-state and out-of-state
 Something that I might want that is not included in the data is how inflation in the United States has changed throughout the years included in the dataset. Understanding how inflation has changed from 2021 to 2023 will allow me to more accurately understand tuition changes, especially increases, throughout the years.
 
 ```{r}
-tuitions2021_analysis_instate <- tuition |>
+tuitions_instate <- tuition |>
   summarize(
     mean_2021_intuition = mean(`2021_22_tuitionfee_in`, na.rm=TRUE), 
     median_2021_intuition = median(`2021_22_tuitionfee_in`, na.rm=TRUE),
-    mean_2021_intuition = mean(`2021_22_tuitionfee_in`, na.rm=TRUE), 
     max_2021_intuition = max(`2021_22_tuitionfee_in`, na.rm=TRUE),
-    mean_2021_intuition = mean(`2021_22_tuitionfee_in`, na.rm=TRUE), 
     min_2021_intuition = min(`2021_22_tuitionfee_in`, na.rm=TRUE),
-    sd_2021_intuition = sd(`2021_22_tuitionfee_in`, na.rm=TRUE))
-```
-
-```{r}
-tuitions2021_analysis_outofstate <- tuition |>
-  summarize(
-    mean_2021_outtuition = mean(`2021_22_tuitionfee_out`, na.rm=TRUE), 
-    median_2021_outtuition = median(`2021_22_tuitionfee_out`, na.rm=TRUE),
-    mean_2021_outtuition = mean(`2021_22_tuitionfee_out`, na.rm=TRUE), 
-    max_2021_outtuition = max(`2021_22_tuitionfee_out`, na.rm=TRUE),
-    mean_2021_outtuition = mean(`2021_22_tuitionfee_out`, na.rm=TRUE), 
-    min_2021_outtuition = min(`2021_22_tuitionfee_out`, na.rm=TRUE),
-    sd_2021_outtuition = sd(`2021_22_tuitionfee_out`, na.rm=TRUE))
-```
-
-```{r}
-tuitions2022_analysis_instate <- tuition |>
-  summarize(
+    sd_2021_intuition = sd(`2021_22_tuitionfee_in`, na.rm=TRUE),
     mean_2022_intuition = mean(`2022_23_tuitionfee_in`, na.rm=TRUE), 
     median_2022_intuition = median(`2022_23_tuitionfee_in`, na.rm=TRUE),
-    mean_2022_intuition = mean(`2022_23_tuitionfee_in`, na.rm=TRUE), 
     max_2022_intuition = max(`2022_23_tuitionfee_in`, na.rm=TRUE),
-    mean_2022_intuition = mean(`2022_23_tuitionfee_in`, na.rm=TRUE), 
     min_2022_intuition = min(`2022_23_tuitionfee_in`, na.rm=TRUE),
-    sd_2022_intuition = sd(`2022_23_tuitionfee_in`, na.rm=TRUE))
-```
-
-```{r}
-tuitions2022_analysis_outstate <- tuition |>
-  summarize(
-    mean_2022_outtuition = mean(`2022_23_tuitionfee_out`, na.rm=TRUE), 
-    median_2022_outtuition = median(`2022_23_tuitionfee_out`, na.rm=TRUE),
-    mean_2022_outtuition = mean(`2022_23_tuitionfee_out`, na.rm=TRUE), 
-    max_2022_outtuition = max(`2022_23_tuitionfee_out`, na.rm=TRUE),
-    mean_2022_outtuition = mean(`2022_23_tuitionfee_out`, na.rm=TRUE), 
-    min_2022_outtuition = min(`2022_23_tuitionfee_out`, na.rm=TRUE),
-    sd_2022_outtuition = sd(`2022_23_tuitionfee_out`, na.rm=TRUE))
-```
-
-```{r}
-tuitions2023_analysis_instate <- tuition |>
-  summarize(
+    sd_2022_intuition = sd(`2022_23_tuitionfee_in`, na.rm=TRUE),
     mean_2023_intuition = mean(`2023_24_tuitionfee_in`, na.rm=TRUE), 
     median_2023_intuition = median(`2023_24_tuitionfee_in`, na.rm=TRUE),
-    mean_2023_intuition = mean(`2023_24_tuitionfee_in`, na.rm=TRUE), 
     max_2023_intuition = max(`2023_24_tuitionfee_in`, na.rm=TRUE),
-    mean_2023_intuition = mean(`2023_24_tuitionfee_in`, na.rm=TRUE), 
     min_2023_intuition = min(`2023_24_tuitionfee_in`, na.rm=TRUE),
     sd_2023_intuition = sd(`2023_24_tuitionfee_in`, na.rm=TRUE))
 ```
 
+
 ```{r}
-tuitions2023_analysis_outstate <- tuition |>
+tuitions_outofstate <- tuition |>
   summarize(
+    mean_2021_outtuition = mean(`2021_22_tuitionfee_out`, na.rm=TRUE), 
+    median_2021_outtuition = median(`2021_22_tuitionfee_out`, na.rm=TRUE),
+    max_2021_outtuition = max(`2021_22_tuitionfee_out`, na.rm=TRUE),
+    min_2021_outtuition = min(`2021_22_tuitionfee_out`, na.rm=TRUE),
+    sd_2021_outtuition = sd(`2021_22_tuitionfee_out`, na.rm=TRUE),
+    mean_2022_outtuition = mean(`2022_23_tuitionfee_out`, na.rm=TRUE), 
+    median_2022_outtuition = median(`2022_23_tuitionfee_out`, na.rm=TRUE),
+    max_2022_outtuition = max(`2022_23_tuitionfee_out`, na.rm=TRUE),
+    min_2022_outtuition = min(`2022_23_tuitionfee_out`, na.rm=TRUE),
+    sd_2022_outtuition = sd(`2022_23_tuitionfee_out`, na.rm=TRUE),
     mean_2023_outtuition = mean(`2023_24_tuitionfee_out`, na.rm=TRUE), 
     median_2023_outtuition = median(`2023_24_tuitionfee_out`, na.rm=TRUE),
-    mean_2023_outtuition = mean(`2023_24_tuitionfee_out`, na.rm=TRUE), 
     max_2023_outtuition = max(`2023_24_tuitionfee_out`, na.rm=TRUE),
-    mean_2023_outtuition = mean(`2023_24_tuitionfee_out`, na.rm=TRUE), 
     min_2023_outtuition = min(`2023_24_tuitionfee_out`, na.rm=TRUE),
     sd_2023_outtuition = sd(`2023_24_tuitionfee_out`, na.rm=TRUE))
 ```
 
+```{r}
+outofstate_tuition_means <- tuition |>
+   summarize(
+    mean_2021_outtuition = mean(`2021_22_tuitionfee_out`, na.rm=TRUE),
+    mean_2022_outtuition = mean(`2022_23_tuitionfee_out`, na.rm=TRUE), 
+    mean_2023_outtuition = mean(`2023_24_tuitionfee_out`, na.rm=TRUE))
+```
+
+```{r}
+instate_tuition_means <- tuition |>
+   summarize(
+    mean_2021_outtuition = mean(`2021_22_tuitionfee_out`, na.rm=TRUE),
+    mean_2022_outtuition = mean(`2022_23_tuitionfee_out`, na.rm=TRUE), 
+    mean_2023_outtuition = mean(`2023_24_tuitionfee_out`, na.rm=TRUE))
+```
+
+
 Possible hypothesis:
 Null: Tuition for Maryland and Virginia colleges and universities have not increased more for out-of-state students from 2021-2023.
 Alternative: Tuition for Maryland and Virginia colleges and universities have increased more for out-of-state students from 2021-2023.
+
+```{r}
+ggplot(instate_tuition_means, aes(x = reorder(sale_id, sale_price), y = mean_2021)) +
+  geom_col(fill = "seagreen", alpha = 0.8) +
+  geom_hline(yintercept = prior_mean, color = "darkred", size = 1, linetype = "dashed") +
+  annotate("text", x = 3, y = prior_mean - 8000, 
+           label = "Previous Average ($285K)", hjust = 0, fontface = "bold", color = "darkred") +
+  scale_y_continuous(labels = dollar_format) +
+  labs(
+    title = "Home Sales After Transit Line",
+    subtitle = "Horizontal line shows previous neighborhood average of $285,000",
+    x = "Recent Home Sales",
+    y = "Sale Price",
+    caption = "Source: County Property Records"
+  ) +
+  theme_minimal() +
+  theme(
+    plot.title = element_text(face = "bold", size = 14),
+    plot.subtitle = element_text(size = 10),
+    axis.text.x = element_blank(),
+    axis.ticks.x = element_blank()
+  )
+```
+
