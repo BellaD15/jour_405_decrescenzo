@@ -2,6 +2,7 @@
 title: "final_project2.rmd"
 output: html_document
 date: "2025-11-24"
+name: Bella DeCrescenzo
 ---
 
 ```{r setup, include=FALSE}
