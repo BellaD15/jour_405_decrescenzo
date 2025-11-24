@@ -62,7 +62,7 @@ tuitions_outofstate <- tuition |>
 
 ```{r}
 outofstate_tuition_means <- tuition |>
-   summarize(
+  summarize(
     mean_2021_outtuition = mean(`2021_22_tuitionfee_out`, na.rm=TRUE),
     mean_2022_outtuition = mean(`2022_23_tuitionfee_out`, na.rm=TRUE), 
     mean_2023_outtuition = mean(`2023_24_tuitionfee_out`, na.rm=TRUE))
@@ -70,37 +70,32 @@ outofstate_tuition_means <- tuition |>
 
 ```{r}
 instate_tuition_means <- tuition |>
-   summarize(
-    mean_2021_outtuition = mean(`2021_22_tuitionfee_out`, na.rm=TRUE),
-    mean_2022_outtuition = mean(`2022_23_tuitionfee_out`, na.rm=TRUE), 
-    mean_2023_outtuition = mean(`2023_24_tuitionfee_out`, na.rm=TRUE))
+  summarize(
+    mean_2021_intuition = mean(`2021_22_tuitionfee_in`, na.rm=TRUE),
+    mean_2022_intuition = mean(`2022_23_tuitionfee_in`, na.rm=TRUE), 
+    mean_2023_intuition = mean(`2023_24_tuitionfee_in`, na.rm=TRUE))
 ```
-
 
 Possible hypothesis:
 Null: Tuition for Maryland and Virginia colleges and universities have not increased more for out-of-state students from 2021-2023.
 Alternative: Tuition for Maryland and Virginia colleges and universities have increased more for out-of-state students from 2021-2023.
 
 ```{r}
-ggplot(instate_tuition_means, aes(x = reorder(sale_id, sale_price), y = mean_2021)) +
-  geom_col(fill = "seagreen", alpha = 0.8) +
-  geom_hline(yintercept = prior_mean, color = "darkred", size = 1, linetype = "dashed") +
-  annotate("text", x = 3, y = prior_mean - 8000, 
-           label = "Previous Average ($285K)", hjust = 0, fontface = "bold", color = "darkred") +
-  scale_y_continuous(labels = dollar_format) +
-  labs(
-    title = "Home Sales After Transit Line",
-    subtitle = "Horizontal line shows previous neighborhood average of $285,000",
-    x = "Recent Home Sales",
-    y = "Sale Price",
-    caption = "Source: County Property Records"
-  ) +
-  theme_minimal() +
-  theme(
-    plot.title = element_text(face = "bold", size = 14),
-    plot.subtitle = element_text(size = 10),
-    axis.text.x = element_blank(),
-    axis.ticks.x = element_blank()
-  )
+mean_2021_intuition <- mean(tuition$"2021_22_tuitionfee_in", na.rm=TRUE)
+mean_2022_intuition <- mean(tuition$"2022_23_tuitionfee_in", na.rm=TRUE)
+mean_2023_intuition <- mean(tuition$"2023_24_tuitionfee_in", na.rm=TRUE)
+tuition_means <- c(mean_2021_intuition, mean_2022_intuition, mean_2023_intuition)
+in_state_tuition_data <- tibble(
+  years = paste("School Year",1:3),
+  tuition_costs = tuition_means
+)
 ```
+
+```{r}
+in_state_tuition_data |> 
+  ggplot() +
+  geom_point(aes(x=years, y=tuition_costs)) +
+  labs(title = "In-state tuition for Maryland and Virginia institutions from 2021 to 2024", x = "School Years 2021-2022, 2022-2023, 2023-2024", y = "Mean cost of tuition for in-state students")
+```
+
 
