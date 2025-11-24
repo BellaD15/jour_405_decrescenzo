@@ -1,0 +1,70 @@
+---
+title: "final_project2.rmd"
+output: html_document
+date: "2025-11-24"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r}
+top_100_billboard<- read_csv("~/Documents/GitHub/jour_405_decrescenzo/project/Billboard Hot 100 Number Ones Database - Data.csv")
+```
+
+***This dataset consists of information about every song in the Billboard Hot 100 from Aug. 4, 1958 and Jan. 11, 2025. The information provided is the song title, the artist, the date that the song was in the top 100, its ratings, number of weeks at number one, style, information about the artist, and then information about the song such as the danceability score and the BPM. The data came from Chris Dalla Riva who wrote a book about what these findings tell us about the top 100 Billboard.
+
+The most important columns for my analysis will be the weeks at number one column and the danceability score, as I will probably be looking at the relationship between danceability and the number of weeks a song spent at number one. 
+
+
+```{r}
+top_100_billboard |>
+  mutate(mean_danceability = mean(Danceability, na.rm=TRUE),
+         deviation_danceability = sd(Danceability, na.rm=TRUE),
+         median_danceability = median(Danceability, na.rm=TRUE),
+         min_danceability = min(Danceability, na.rm=TRUE),
+         max_danceability = max(Danceability, na.rm=TRUE))
+```
+```{r}
+top_100_billboard |>
+  mutate(mean_weeksat1 = mean(`Weeks at Number One`, na.rm=TRUE),
+         deviation_weeksat1 = sd(`Weeks at Number One`, na.rm=TRUE),
+         median_weeksat1 = median(`Weeks at Number One`, na.rm=TRUE),
+         min_weeksat1 = min(`Weeks at Number One`, na.rm=TRUE),
+         max_weeksat1 = max(`Weeks at Number One`, na.rm=TRUE))
+```
+
+
+I found that the mean danceability within the dataset is 62.947, the average standard deviation for danceability is 15.205, the median danceability score is 64, the minimum score is 14, and the maximum score is 98. I also found that the mean number of weeks at number 1 is 2.9379, the average standard deviation for number of weeks at number 1 is 2.6435, the median number of weeks at number 1 is 2, the minimum number of weeks is 1 and the maximum number of weeks at number 1 is 19. Therefore, for both danceability and the number of weeks at number 1, we can see a large variance.
+
+Null: Having a higher danceability score does not affect the number of weeks a song spends at #1.
+Alternate: Having a higher danceability score has a positive effect on the number of weeks a song spends at #1.
+
+```{r}
+top_100_billboard |> 
+  ggplot() +
+  geom_point(aes(x=Danceability, y=`Weeks at Number One`)) +
+  geom_smooth(aes(x=Danceability, y=`Weeks at Number One`), method="lm") +
+  labs(title = "Relationship between danceability and the number of weeks a song in the Billboard Top 100 spends at #1 from 1958-2025", x = "Danceability score", y = "Number of weeks at #1")
+```
+Scatterplot shows that there might be a slight positive relationship between danceability score and the number of weeks a song spends at #1.
+```{r}
+model <- lm(`Weeks at Number One` ~ `Danceability`, data = top_100_billboard)
+
+summary(model)
+```
+As the p-value is .0005128, the relationship between danceability and the number of weeks a song spends at number 1 are statistically significant. However, the adjusted r-squared value, .009397 is very far from 100, showing that there is another factor affecting the number of weeks a song spends at #1. The danceability coefficient of .017600 shows that as danceability increases, the amount of weeks a song stays at number one slightly increases. Therefore, there is a statistically significant relationship between these two variables, but the coefficient shows a weak, slight positive relationship. Therefore, this linear regression test shows that there is a statistically significant slightly positive relationship between danceability and the number of weeks spent at #1. In other words, danceability does impact how many weeks a song spends at #1, but this is not the only factors impacting how long a song spends at #1.
+
+```{r}
+anova_test <- aov(`Weeks at Number One` ~ `Danceability`, data = top_100_billboard)
+summary(anova_test)
+```
+
+The p-value of .000513 shows that the relationship between a song's danceability score and the number of weeks it spends at #1 is statistically significant. Therefore, a song's danceability does impact the amount of time that a song spends at #1.
