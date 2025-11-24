@@ -84,18 +84,54 @@ Alternative: Tuition for Maryland and Virginia colleges and universities have in
 mean_2021_intuition <- mean(tuition$"2021_22_tuitionfee_in", na.rm=TRUE)
 mean_2022_intuition <- mean(tuition$"2022_23_tuitionfee_in", na.rm=TRUE)
 mean_2023_intuition <- mean(tuition$"2023_24_tuitionfee_in", na.rm=TRUE)
-tuition_means <- c(mean_2021_intuition, mean_2022_intuition, mean_2023_intuition)
+tuition_means_in <- c(mean_2021_intuition, mean_2022_intuition, mean_2023_intuition)
 in_state_tuition_data <- tibble(
-  years = paste("School Year",1:3),
-  tuition_costs = tuition_means
+  years = paste("School year", 1:3),
+  tuition_costs_in = tuition_means_in
 )
 ```
 
 ```{r}
 in_state_tuition_data |> 
   ggplot() +
-  geom_point(aes(x=years, y=tuition_costs)) +
+  geom_point(aes(x=years, y=tuition_costs_in)) +
   labs(title = "In-state tuition for Maryland and Virginia institutions from 2021 to 2024", x = "School Years 2021-2022, 2022-2023, 2023-2024", y = "Mean cost of tuition for in-state students")
 ```
+```{r}
+mean_2021_outtuition <- mean(tuition$"2021_22_tuitionfee_out", na.rm=TRUE)
+mean_2022_outtuition <- mean(tuition$"2022_23_tuitionfee_out", na.rm=TRUE)
+mean_2023_outtuition <- mean(tuition$"2023_24_tuitionfee_out", na.rm=TRUE)
+tuition_means_out <- c(mean_2021_outtuition, mean_2022_outtuition, mean_2023_outtuition)
+out_state_tuition_data <- tibble(
+  years = paste("School year", 1:3),
+  tuition_costs_out = tuition_means_out
+)
+```
 
+```{r}
+out_state_tuition_data |> 
+  ggplot() +
+  geom_point(aes(x=years, y=tuition_costs_out)) +
+  labs(title = "Out of state tuition for Maryland and Virginia institutions from 2021 to 2024", x = "School Years 2021-2022, 2022-2023, 2023-2024", y = "Mean cost of tuition for out of state students")
+```
+
+```{r}
+period_anova <- aov(tuition_means_out ~ years, data = out_state_tuition_data)
+summary(period_anova)
+```
+
+```{r}
+tukey_results <- TukeyHSD(period_anova)
+print(tukey_results)
+```
+```{r}
+out_state_tuition_data <- out_state_tuition_data |>
+  mutate(
+    time_period = case_when(
+      year == 2023 ~ "Pre-spike",
+      year == 2023 ~ "Spike year",
+      year > 2023 ~ "Post-spike"
+    )
+  )
+```
 
