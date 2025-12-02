@@ -128,7 +128,7 @@ print(tukey_results)
 out_state_tuition_data <- out_state_tuition_data |>
   mutate(
     time_period = case_when(
-      year == 2023 ~ "Pre-spike",
+      year ==2023 ~ "Pre-spike",
       year == 2023 ~ "Spike year",
       year > 2023 ~ "Post-spike"
     )

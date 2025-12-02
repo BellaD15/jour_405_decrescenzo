@@ -142,7 +142,7 @@ For our ANOVA test, we'll compare the mean theft rates between the three time pe
 
 ```{r anova-test}
 # Perform one-way ANOVA on theft rates by time period
-period_anova <- aov(theft_rate ~ time_period, data = theft_data)
+period_anova2 <- aov(theft_rate ~ time_period, data = theft_data)
 summary(period_anova)
 ```
 
