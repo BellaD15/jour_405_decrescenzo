@@ -27,8 +27,7 @@ head(md_turnout)
 
 Before building our model, let's explore the data to understand the variables and their relationships. Examine the correlation matrix to see how the independent variables relate to each other and to the dependent variable (voter turnout). Which variables seem to be correlated? Are there any that are not correlated at all? Also look at the multiple scatterplots. Which variables seem to have a linear relationship with the dependent variable? Which do not?
 
-ANSWER HERE
-
+The percentage of unemployed voters and the percentage of white voters seem to be the most correlated variables with voter turnout. Median age and the percentage of voters who have a bachelors degree or higher are not correlated at all.  The percentage unemployed seems to have a strong negative linear relationship with the dependent variable while population does not seem to have a linear relationship with the dependent variable.
 
 ```{r}
 # Summary statistics
@@ -90,7 +89,7 @@ The coefficients tell us the estimated effect of each independent variable on th
 
 Examine the output of the model, checking the coefficients, residuals, and overall model fit. How well does this multiple variable model predict turnout? Do any of the variables seem to be insignificant? Is this a useful model, based on what you've seen? Why?
 
-ANSWER HERE
+The population, percentage of voters who have a bachelor or higher, and the percentage of unemployed voters seem to be insignificant as they all have p-values higher than .05. With a multiple r-squared value of .85 and an adjusted r-squared value of .80, it is obvious that this model is a good fit as it is able to accurately predict turnout most of the time. Also, with a very small residual standard of error, the model hardly deviates from actual turnout, making this model a great fit and very useful.
 
 ```{r}
 # Build initial model with all predictors
@@ -104,19 +103,19 @@ summary(initial_model)
 
 Create three alternative models by adding or removing variables to see if we can improve the model's performance. Turnout will always be the dependent variable, but you should alter the independent variables by removing or adding some. Then compare the models using adjusted R-squared values. Are any of the models significantly better than the others?
 
-ANSWER HERE
+The full model is significantly better than the others with the highest adjusted r-squared value. However, the next best model with the second highest adjusted r-squared value is the model looking at the relationship between turnout and the percentage of the population that is white.
 
 ```{r}
 # Model 2
-model2 <- lm(turnout ~ REPLACE ME, data = md_turnout)
+model2 <- lm(turnout ~ income, data = md_turnout)
 summary(model2)
 
 # Model 3
-model3 <- lm(turnout ~ REPLACE ME, data = md_turnout)
+model3 <- lm(turnout ~ median_age, data = md_turnout)
 summary(model3)
 
 # Model 4
-model4 <- lm(turnout ~ REPLACE ME, data = md_turnout)
+model4 <- lm(turnout ~ pct_white, data = md_turnout)
 summary(model4)
 
 # Compare models
@@ -145,4 +144,4 @@ ggplot(model_comparison, aes(x = reorder(Model, Adjusted_R_squared), y = Adjuste
 
 Without using the words "multiple regression model", describe how you could use this analysis to cover an election or voter participation story.
 
-ANSWER HERE
+I could use this analysis to cover a voter participation story by looking into which counties have the highest voter turnout rates and what are the biggest factors, or reasons why, they have the largest voter turnout rates. Therefore, I could use this analysis to explain to readers which factors, such as income, are most important in impacting voter turnout.
