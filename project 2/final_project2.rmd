@@ -11,7 +11,7 @@ library(tidyverse)
 ```
 
 ```{r}
-top_100_billboard<- read_csv("~/Documents/GitHub/jour_405_decrescenzo/project/Billboard Hot 100 Number Ones Database - Data.csv")
+top_100_billboard<- read_csv("~/Downloads/project 2/Billboard Hot 100 Number Ones Database - Data.csv")
 ```
 
 ***This dataset consists of information about every song in the Billboard Hot 100 from Aug. 4, 1958 and Jan. 11, 2025. The information provided is the song title, the artist, the date that the song was in the top 100, its ratings, number of weeks at number one, style, information about the artist, and then information about the song such as the danceability score and the BPM. The data came from Chris Dalla Riva who wrote a book about what these findings tell us about the top 100 Billboard.
